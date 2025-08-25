@@ -1,3 +1,7 @@
+git config --global user.name "High_Logic"
+git config --global user.email "highlogic233@gmail.com"
+
+
 测试tensorrt
 
 python -m venv GENIE_ENV

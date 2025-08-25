@@ -1,7 +1,9 @@
 # .gitignore
 
+Config.txt
 chinese-hubert-base.onnx
 open_jtalk_dic_utf_8-1.11/
+Docs/
 GENIE_ENV/
 
 # Python
