@@ -1,0 +1,40 @@
+name: Build Windows Portable Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Extract Scripts
+        run: cp .\portable\windows\*.bat .\portable\windows\*.py . && rm -r .\portable
+      
+      - name: Create runtime directory
+        run: mkdir runtime && cd runtime
+
+      - name: Setup Portable Python
+        uses: BHznJNs/setup-python-embedded@release-1
+        with:
+          python-version: "3.12.9"
+      
+      - name: Go Back to Repository Directory
+        run: cd ..
+
+      - name: Install dependencies
+        run: |
+          .\runtime\python.exe -m pip install --upgrade pip
+          .\runtime\python.exe -m pip install -r requirements.txt
+          .\runtime\python.exe -m pip install -e ./src/genie-tts
+      
+      - name: Upload Portable Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-portable-amd64
+          path: .
