@@ -73,11 +73,6 @@ BYTES_PER_SAMPLE = 2
 CHANNELS = 1
 SAMPLE_RATE = 32000
 
-
-def run_server():
-    genie.start_server(host=SERVER_HOST, port=SERVER_PORT, workers=1)
-
-
 def main_client():
     # 1. Load Character
     print("\n[Client] Step 1: Sending load character request...")
@@ -112,7 +107,7 @@ def main_client():
     print("\n[Client] Step 3: Requesting TTS and preparing audio stream...")
     tts_payload = {
         "character_name": "misono_mika",  # Use the same character name
-        "text": "どうしようかな……やっぱりやりたいかも……！",  # Replace with the text you want to synthesize
+        "text": "おはようございます",  # Replace with the text you want to synthesize
         "split_sentence": True
     }
 
